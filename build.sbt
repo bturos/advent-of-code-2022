@@ -1,7 +1,7 @@
 import com.softwaremill.SbtSoftwareMillCommon.commonSmlBuildSettings
 
 lazy val commonSettings = commonSmlBuildSettings ++ Seq(
-  organization := "com.softwaremill.xxx",
+  organization := "org.szklaniec",
   scalaVersion := "2.13.10"
 )
 
