@@ -24,5 +24,4 @@ private[day3] trait RucksackContentPriorityCalculator {
     }
   }
 
-  private[this] def getPriorityForItem(item: Char): Int = if (item.isLower) item - 'a' + 1 else item - 'A' + 27
 }
