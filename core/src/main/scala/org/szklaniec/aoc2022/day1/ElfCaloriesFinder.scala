@@ -1,24 +1,20 @@
 package org.szklaniec.aoc2022.day1
 
-import scala.io.Source
-import scala.util.{Try, Using}
+import scala.util.Try
 
-object ElfCaloriesFinder {
+private[day1] trait ElfCaloriesFinder {
 
-  case class ElfCalories(
-      caloriesSoFar: Int
-  )
-
-  def collectElvishCalories(fileName: String): Try[List[Int]] = {
-    Using(Source.fromResource(fileName)) { source =>
-      source.getLines().foldLeft((List.empty[Int], List.empty[Int])) { case ((allCaloriesList, currentElfCaloriesList), line) =>
-        line.trim match {
-          case ""                  => (currentElfCaloriesList.sum :: allCaloriesList, List.empty)
-          case caloriesStringValue => (allCaloriesList, caloriesStringValue.toInt :: currentElfCaloriesList)
-        }
+  def collectElvishCalories(caloriesPerElf: List[String]): Try[List[Int]] = {
+    Try {
+      val (allCaloriesList, lastElfCalories) = caloriesPerElf.foldLeft((List.empty[Int], List.empty[Int])) {
+        case ((allCaloriesList, currentElfCaloriesList), line) =>
+          line.trim match {
+            case ""                  => (currentElfCaloriesList.sum :: allCaloriesList, List.empty)
+            case caloriesStringValue => (allCaloriesList, caloriesStringValue.toInt :: currentElfCaloriesList)
+          }
       }
-    }.map { case (allCaloriesList, currentElfCalories) =>
-      currentElfCalories.sum :: allCaloriesList
+
+      lastElfCalories.sum :: allCaloriesList
     }
   }
 }
