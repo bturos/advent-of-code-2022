@@ -10,9 +10,9 @@ val scalaTest = "org.scalatest" %% "scalatest" % "3.2.14" % Test
 lazy val rootProject = (project in file("."))
   .settings(commonSettings: _*)
   .settings(publishArtifact := false, name := "root")
-  .aggregate(core)
+  .aggregate(puzzles)
 
-lazy val core: Project = (project in file("core"))
+lazy val puzzles: Project = (project in file("puzzles"))
   .settings(commonSettings: _*)
   .settings(
     name := "core",
