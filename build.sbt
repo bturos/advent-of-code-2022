@@ -16,7 +16,7 @@ lazy val rootProject = (project in file("."))
 lazy val puzzles: Project = (project in file("puzzles"))
   .settings(commonSettings: _*)
   .settings(
-    name := "core",
+    name := "puzzles",
     libraryDependencies ++= Seq(
       cats,
       scalaTest
