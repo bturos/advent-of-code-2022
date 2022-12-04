@@ -1,12 +1,14 @@
 package org.szklaniec.aoc2022.day4
 
+import org.szklaniec.aoc2022.{ErrorWithLineNumberOps, LineWithNumber}
+
 import scala.util.{Failure, Success, Try}
 
 trait OverlappingCleanupFinder {
 
-  def findFullOverlaps(lines: List[String], overlapStrategy: OverlapStrategy): Try[Int] = {
-    lines.foldLeft(Try(0)) { (totalOverlapCounter, line) =>
-      for {
+  def findFullOverlaps(lines: List[LineWithNumber], overlapStrategy: OverlapStrategy): Try[Int] = {
+    lines.foldLeft(Try(0)) { case (totalOverlapCounter, LineWithNumber(line, lineNumber)) =>
+      (for {
         overlapCounter <- totalOverlapCounter
         (firstSectionsString, secondSectionsString) <- line.split(",") match {
           case Array(firstList, secondList) => Success((firstList, secondList))
@@ -15,7 +17,8 @@ trait OverlappingCleanupFinder {
         firstRange <- getSectionsRange(firstSectionsString)
         secondRange <- getSectionsRange(secondSectionsString)
         overlapCondition = overlapStrategy.matches(firstRange, secondRange)
-      } yield if (overlapCondition) overlapCounter + 1 else overlapCounter
+      } yield if (overlapCondition) overlapCounter + 1 else overlapCounter)
+        .recoverWithLineNumber(lineNumber)
     }
   }
 

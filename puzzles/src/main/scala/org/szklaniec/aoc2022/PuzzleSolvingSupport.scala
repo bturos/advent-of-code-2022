@@ -5,10 +5,18 @@ import scala.util.{Try, Using}
 
 object PuzzleSolvingSupport {
 
-  def solvePuzzleUsingFile[T](filename: String, puzzleSolvingFn: List[String] => Try[T]): Try[T] = {
+  def solvePuzzleUsingFile[T](filename: String, puzzleSolvingFn: List[LineWithNumber] => Try[T]): Try[T] = {
     Using(Source.fromResource(filename)) { source =>
-      puzzleSolvingFn(source.getLines().toList)
+      val lines = source.getLines().toList
+      val linesWithNumbers = lines
+        .zip(Range.inclusive(1, lines.size))
+        .map { case (content, number) =>
+          LineWithNumber(content, number)
+        }
+      puzzleSolvingFn(linesWithNumbers)
     }.flatten
   }
 
 }
+
+case class LineWithNumber(content: String, number: Int)

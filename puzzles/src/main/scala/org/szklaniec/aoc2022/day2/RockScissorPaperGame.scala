@@ -1,5 +1,7 @@
 package org.szklaniec.aoc2022.day2
 
+import org.szklaniec.aoc2022.{ErrorWithLineNumberOps, LineWithNumber}
+
 import scala.util.{Failure, Success, Try}
 
 /*
@@ -9,9 +11,9 @@ Outcome: 0 lost, 3 draw, 6 won
  */
 private[day2] trait RockScissorPaperGame {
 
-  protected[this] def findSumOfPoints(fileLines: List[String], gameStrategy: GameStrategy): Try[Int] = {
-    fileLines.foldLeft(Try(0)) { (sumOfPoints, line) =>
-      for {
+  protected[this] def findSumOfPoints(fileLines: List[LineWithNumber], gameStrategy: GameStrategy): Try[Int] = {
+    fileLines.foldLeft(Try(0)) { case (sumOfPoints, LineWithNumber(line, lineNumber)) =>
+      (for {
         sumOfPointsSoFar <- sumOfPoints
         actionStrings <- Try(line.split(" "))
         (first, second) <- actionStrings match {
@@ -20,7 +22,8 @@ private[day2] trait RockScissorPaperGame {
         }
         (firstAction, secondAction) <- gameStrategy.selectActions(first, second)
         newSumOfPoints = sumOfPointsSoFar + calculateRoundPoints(firstAction, secondAction)
-      } yield newSumOfPoints
+      } yield newSumOfPoints)
+        .recoverWithLineNumber(lineNumber)
     }
   }
 
