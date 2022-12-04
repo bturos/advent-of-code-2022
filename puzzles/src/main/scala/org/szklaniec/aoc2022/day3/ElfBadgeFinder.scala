@@ -1,6 +1,8 @@
 package org.szklaniec.aoc2022.day3
 
 import cats.syntax.all._
+import org.szklaniec.aoc2022.LineWithNumber
+
 import scala.util.{Failure, Success, Try}
 
 private[day3] trait ElfBadgeFinder {
@@ -11,10 +13,10 @@ private[day3] trait ElfBadgeFinder {
       third: String
   )
 
-  def calculateBadgePriorities(lines: List[String]): Try[Int] = {
+  def calculateBadgePriorities(lines: List[LineWithNumber]): Try[Int] = {
     for {
-      _ <- validateGroupsCount(lines)
-      badgeGroups <- createBadgeGroups(lines)
+      _ <- validateGroupsCount(lines.map(_.content))
+      badgeGroups <- createBadgeGroups(lines.map(_.content))
       commonGroupItems = badgeGroups.map { case BadgeGroup(first, second, third) =>
         first.intersect(second.intersect(third))
       }
