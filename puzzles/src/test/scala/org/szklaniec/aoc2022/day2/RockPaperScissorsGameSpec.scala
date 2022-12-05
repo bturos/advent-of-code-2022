@@ -13,7 +13,7 @@ class RockPaperScissorsGameSpec extends AnyFlatSpec with Matchers with RockSciss
     val filename = "rock-scissor-paper.txt"
 
     // when
-    val sumOfPoints = PuzzleSolvingSupport.solvePuzzleUsingFile(filename, findSumOfPoints(_, SelectActionToWinRoundGameStrategy))
+    val sumOfPoints = PuzzleSolvingSupport.executeLogicWithFile(filename, findSumOfPoints(_, SelectActionToWinRoundGameStrategy))
 
     // then
     sumOfPoints match {
@@ -28,7 +28,7 @@ class RockPaperScissorsGameSpec extends AnyFlatSpec with Matchers with RockSciss
     val filename = "rock-scissor-paper.txt"
 
     // when
-    val sumOfPoints = PuzzleSolvingSupport.solvePuzzleUsingFile(filename, findSumOfPoints(_, SelectActionToAchieveRoundOutcomeGameStrategy))
+    val sumOfPoints = PuzzleSolvingSupport.executeLogicWithFile(filename, findSumOfPoints(_, SelectActionToAchieveRoundOutcomeGameStrategy))
 
     // then
     sumOfPoints match {

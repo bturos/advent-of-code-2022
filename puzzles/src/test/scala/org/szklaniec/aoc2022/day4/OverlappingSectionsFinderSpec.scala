@@ -13,7 +13,7 @@ class OverlappingSectionsFinderSpec extends AnyFlatSpec with Matchers with Overl
     val filename = "section-cleanup-pairs.txt"
 
     // when
-    val totalOverlapCounter = PuzzleSolvingSupport.solvePuzzleUsingFile(filename, findFullOverlaps(_, TotalOverlapStrategy))
+    val totalOverlapCounter = PuzzleSolvingSupport.executeLogicWithFile(filename, findFullOverlaps(_, TotalOverlapStrategy))
 
     // then
     totalOverlapCounter match {
@@ -28,7 +28,7 @@ class OverlappingSectionsFinderSpec extends AnyFlatSpec with Matchers with Overl
     val filename = "section-cleanup-pairs.txt"
 
     // when
-    val totalOverlapCounter = PuzzleSolvingSupport.solvePuzzleUsingFile(filename, findFullOverlaps(_, AnyOverlapStrategy))
+    val totalOverlapCounter = PuzzleSolvingSupport.executeLogicWithFile(filename, findFullOverlaps(_, AnyOverlapStrategy))
 
     // then
     totalOverlapCounter match {

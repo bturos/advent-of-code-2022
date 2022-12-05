@@ -13,7 +13,7 @@ class RucksackContentPriorityCalculatorSpec extends AnyFlatSpec with Matchers wi
     val filename = "rucksacks.txt"
 
     // when
-    val sumOfPoints = PuzzleSolvingSupport.solvePuzzleUsingFile(filename, collectCommonItemsPriorities)
+    val sumOfPoints = PuzzleSolvingSupport.executeLogicWithFile(filename, collectCommonItemsPriorities)
 
     // then
     sumOfPoints match {
@@ -28,7 +28,7 @@ class RucksackContentPriorityCalculatorSpec extends AnyFlatSpec with Matchers wi
     val filename = "rucksacks.txt"
 
     // when
-    val sumOfPoints = PuzzleSolvingSupport.solvePuzzleUsingFile(filename, calculateBadgePriorities)
+    val sumOfPoints = PuzzleSolvingSupport.executeLogicWithFile(filename, calculateBadgePriorities)
 
     // then
     sumOfPoints match {

@@ -4,14 +4,14 @@ private[day5] case class Warehouse(stacks: Map[Int, List[Crate]]) {
 
   override def toString: String = {
     stacks.toList
-      .sortBy { case (stackIndex, _) =>
-        stackIndex
+      .sortBy { case (index, _) => index }
+      .map { case (index, stack) =>
+        s"\nStack $index: $stack"
       }
-      .map { case (stackIndex, stack) =>
-        s"$stackIndex: $stack"
-      }
-      .mkString("\n")
+      .mkString
   }
+
+  def cratesCount: Int = stacks.values.flatten.size
 
 }
 

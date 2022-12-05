@@ -5,7 +5,7 @@ import scala.util.{Try, Using}
 
 object PuzzleSolvingSupport {
 
-  def solvePuzzleUsingFile[T](filename: String, puzzleSolvingFn: List[LineWithNumber] => Try[T]): Try[T] = {
+  def executeLogicWithFile[T](filename: String, puzzleSolvingFn: List[LineWithNumber] => Try[T]): Try[T] = {
     Using(Source.fromResource(filename)) { source =>
       val lines = source.getLines().toList
       val linesWithNumbers = lines
