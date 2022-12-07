@@ -13,7 +13,7 @@ class ElfCaloriesFinderSpec extends AnyFlatSpec with Matchers with ElfCaloriesFi
     val filename = "elvishCalories.txt"
 
     // when
-    val caloriesByElf = PuzzleSolvingSupport.solvePuzzleUsingFile(filename, collectElvishCalories)
+    val caloriesByElf = PuzzleSolvingSupport.executeLogicWithFile(filename, collectElvishCalories)
 
     // then
     caloriesByElf match {
@@ -29,7 +29,7 @@ class ElfCaloriesFinderSpec extends AnyFlatSpec with Matchers with ElfCaloriesFi
     val filename = "elvishCalories.txt"
 
     // when
-    val caloriesByElf = PuzzleSolvingSupport.solvePuzzleUsingFile(filename, collectElvishCalories)
+    val caloriesByElf = PuzzleSolvingSupport.executeLogicWithFile(filename, collectElvishCalories)
 
     // then
     caloriesByElf match {
