@@ -13,6 +13,14 @@ private[day5] case class Warehouse(stacks: Map[Int, List[Crate]]) {
 
   def cratesCount: Int = stacks.values.flatten.size
 
+  def getTopCrates: List[Crate] = stacks.toList
+    .sortBy { case (index, _) =>
+      index
+    }
+    .map { case (_, stack) =>
+      stack.head
+    }
+
 }
 
 object Warehouse {
